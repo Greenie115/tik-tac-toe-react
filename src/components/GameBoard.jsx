@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const boardLayout = [
     [null, null, null],
     [null, null, null],
@@ -5,14 +7,25 @@ const boardLayout = [
 ]
 
 function GameBoard(){
+
+    const [gameBoard, setGameBoard] = useState(boardLayout)
+
+    function handlePlayerClick(rowIndex, colIndex){
+        setGameBoard((prevGameBoard) => {
+            const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])]
+            updatedBoard[rowIndex][colIndex] = 'X'
+            return updatedBoard
+        })
+    }
+
     return(
         <ol id="game-board">
-            {boardLayout.map((row, rowIndex) => (
+            {gameBoard.map((row, rowIndex) => (
                 <li key={rowIndex}>
                     <ol>
                         {row.map((playerSymbol, colIndex) => (
                             <li key={colIndex}>
-                                <button>{playerSymbol}</button>
+                                <button onClick={() => handlePlayerClick(rowIndex, colIndex)}>{playerSymbol}</button>
                             </li>
                         ))}
                     </ol>
