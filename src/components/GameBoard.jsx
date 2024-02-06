@@ -6,16 +6,17 @@ const boardLayout = [
     [null, null, null],
 ]
 
-function GameBoard(){
+function GameBoard({onSelectSquare, activePlayer}){
 
     const [gameBoard, setGameBoard] = useState(boardLayout)
 
     function handlePlayerClick(rowIndex, colIndex){
         setGameBoard((prevGameBoard) => {
             const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])]
-            updatedBoard[rowIndex][colIndex] = 'X'
+            updatedBoard[rowIndex][colIndex] = activePlayer
             return updatedBoard
         })
+        onSelectSquare()
     }
 
     return(
