@@ -36,7 +36,7 @@ function App() {
         onSelectSquare={handleActivePlayer} 
         turns={gameTurns} />
       </div>
-      <Log />
+      <Log turns={gameTurns}/>
     </main>
   )
 }
