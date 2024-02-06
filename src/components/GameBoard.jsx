@@ -1,4 +1,4 @@
-import { useState } from "react"
+ 
 
 const boardLayout = [
     [null, null, null],
@@ -10,14 +10,14 @@ function GameBoard({onSelectSquare, activePlayer}){
 
     const [gameBoard, setGameBoard] = useState(boardLayout)
 
-    function handlePlayerClick(rowIndex, colIndex){
-        setGameBoard((prevGameBoard) => {
-            const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])]
-            updatedBoard[rowIndex][colIndex] = activePlayer
-            return updatedBoard
-        })
-        onSelectSquare()
-    }
+    // function handlePlayerClick(rowIndex, colIndex){
+    //     setGameBoard((prevGameBoard) => {
+    //         const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])]
+    //         updatedBoard[rowIndex][colIndex] = activePlayer
+    //         return updatedBoard
+    //     })
+    //     onSelectSquare()
+    // }
 
     return(
         <ol id="game-board">
@@ -26,7 +26,7 @@ function GameBoard({onSelectSquare, activePlayer}){
                     <ol>
                         {row.map((playerSymbol, colIndex) => (
                             <li key={colIndex}>
-                                <button onClick={() => handlePlayerClick(rowIndex, colIndex)}>{playerSymbol}</button>
+                                <button onClick={onSelectSquare}>{playerSymbol}</button>
                             </li>
                         ))}
                     </ol>
