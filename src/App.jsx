@@ -2,6 +2,7 @@ import { useState } from "react"
 import Log from "./components/Log"
 import GameBoard from "./components/GameBoard"
 import Player from "./components/Player"
+import { WINNING_COMBINATIONS } from "./Winning_Combinations"
 
 function deriveActivePlayer(gameTurns) {
   let currentPlayer = 'X'
@@ -14,12 +15,11 @@ function deriveActivePlayer(gameTurns) {
 
 function App() {
 
-  const activePlayer = deriveActivePlayer(gameTurns)
-
+  
   const [gameTurns, setGameTurns] = useState([])
-
+  const activePlayer = deriveActivePlayer(gameTurns)
+  
   function handleActivePlayer(rowIndex, colIndex) {
-    setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? 'O' : 'X')
     setGameTurns(prevTurns => {
       const currentPlayer = deriveActivePlayer(prevTurns)
 
